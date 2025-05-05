@@ -43,3 +43,16 @@ func (u UserRepository) Update(id, name, email string) error {
 
 	return errors.New("user not found")
 }
+
+// Delete elimina un usuario por su ID.
+// Devuelve un error si el usuario no se encuentra,
+// caso contrario, devuelve nil.
+func (u UserRepository) Delete(id string) error {
+	for i, v := range data.Data {
+		if v.Id == id {
+			data.Data = append(data.Data[:i], data.Data[i+1:]...)
+			return nil
+		}
+	}
+	return errors.New("user not found")
+}
